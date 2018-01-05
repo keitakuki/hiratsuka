@@ -124,23 +124,25 @@ def custom_model_4(inputs):
     SVG(model_to_dot(model, show_shapes = True).create(prog='dot', format='svg'))
     return model
 
-def custom_fit(model, inputs, label):
+def custom_fit(model, inputs, label, validation_data):
     # callback = EarlyStopping(monitor='val_loss', patience=10, verbose=1)
     history = model.fit(np.array(inputs), np.array(label),
                         batch_size=4096,
                         epochs=100,
                         verbose=1,
-                        validation_split=0.1,
+                        validation_data=validation_data,
                         # callbacks=[callback]
                        )
     return (model, history)
 
 
-def plot_history(history, file_name):
+def plot_history(history, file_name, min_loss):
     # 損失の履歴をプロット
+    plt.figure()
     plt.plot(history.history['loss'])
     plt.plot(history.history['val_loss'])
-    plt.title('model loss')
+    plt.title('test mse: {0}'.format(min_loss))
+    plt.yscale("log")
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.legend(['loss', 'val_loss'], loc='lower right')
@@ -160,54 +162,54 @@ test_label = test_data[label_cols[0]]
 # 1
 model_name = "model_1"
 min_loss = 1e10
-for i in range(1,10):
+for i in range(1,5):
     model = custom_model_1(train_inputs)
-    model, history = custom_fit(model, train_inputs, train_label)
+    model, history = custom_fit(model, train_inputs, train_label, ((np.array(test_inputs)), (np.array(test_label))))
     loss = mean_squared_error(model.predict(np.array(test_inputs)), test_label)
     if loss < min_loss:
        min_loss = loss
        best_model = model
        best_history = history
-plot_history(best_history, model_name)
+plot_history(best_history, model_name, min_loss)
 
 # 2
 model_name = "model_2"
 min_loss = 1e10
-for i in range(1,10):
+for i in range(1,5):
     model = custom_model_2(train_inputs)
-    model, history = custom_fit(model, train_inputs, train_label)
+    model, history = custom_fit(model, train_inputs, train_label, ((np.array(test_inputs)), (np.array(test_label))))
     loss = mean_squared_error(model.predict(np.array(test_inputs)), test_label)
     if loss < min_loss:
        min_loss = loss
        best_model = model
        best_history = history
-plot_history(best_history, model_name)
+plot_history(best_history, model_name, min_loss)
 
 # 3
 model_name = "model_3"
 min_loss = 1e10
-for i in range(1,10):
+for i in range(1,5):
     model = custom_model_3(train_inputs)
-    model, history = custom_fit(model, train_inputs, train_label)
+    model, history = custom_fit(model, train_inputs, train_label, ((np.array(test_inputs)), (np.array(test_label))))
     loss = mean_squared_error(model.predict(np.array(test_inputs)), test_label)
     if loss < min_loss:
        min_loss = loss
        best_model = model
        best_history = history
-plot_history(best_history, model_name)
+plot_history(best_history, model_name, min_loss)
 
 # 4
 model_name = "model_4"
 min_loss = 1e10
-for i in range(1,10):
+for i in range(1,5):
     model = custom_model_4(train_inputs)
-    model, history = custom_fit(model, train_inputs, train_label)
+    model, history = custom_fit(model, train_inputs, train_label, ((np.array(test_inputs)), (np.array(test_label))))
     loss = mean_squared_error(model.predict(np.array(test_inputs)), test_label)
     if loss < min_loss:
        min_loss = loss
        best_model = model
        best_history = history
-plot_history(best_history, model_name)
+plot_history(best_history, model_name, min_loss)
 # learning---------------------------------------------------------
 
 
