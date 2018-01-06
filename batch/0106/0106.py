@@ -46,7 +46,7 @@ for param in input_params:
 label_cols = searchColumn("label", data.columns)
 # input/label---------------------------------------------------------
 
-# learning---------------------------------------------------------
+# model---------------------------------------------------------
 def custom_model_1(inputs):
     inputs_size = inputs.shape[1]
     
@@ -193,8 +193,9 @@ def custom_model_7(inputs):
     model.compile(optimizer='adam', loss='mse')
     SVG(model_to_dot(model, show_shapes = True).create(prog='dot', format='svg'))
     return model
+# model---------------------------------------------------------
 
-
+# learning---------------------------------------------------------
 def custom_fit(model, inputs, label, validation_data):
     # callback = EarlyStopping(monitor='val_loss', patience=10, verbose=1)
     history = model.fit(np.array(inputs), np.array(label),
