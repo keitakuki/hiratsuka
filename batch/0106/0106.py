@@ -199,7 +199,7 @@ def custom_fit(model, inputs, label, validation_data):
     # callback = EarlyStopping(monitor='val_loss', patience=10, verbose=1)
     history = model.fit(np.array(inputs), np.array(label),
                         batch_size=4096,
-                        epochs=100,
+                        epochs=200,
                         verbose=1,
                         validation_data=validation_data,
                         # callbacks=[callback]
@@ -216,7 +216,7 @@ def plot_history(history, file_name, min_loss):
     plt.yscale("log")
     plt.xlabel('epoch')
     plt.ylabel('loss')
-    plt.legend(['loss', 'val_loss'], loc='lower right')
+    plt.legend(['loss', 'val_loss'], loc='upper right')
     plt.savefig('{0}.jpg'.format(file_name))
 
 
