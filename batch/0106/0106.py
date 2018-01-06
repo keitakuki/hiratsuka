@@ -26,7 +26,7 @@ def searchColumn(word, cols):
 # utils---------------------------------------------------------
 
 # load data---------------------------------------------------------
-data_path = "../../data/std_data.csv"
+data_path = "../../../data/std_data.csv"
 std_data = pd.read_csv(data_path, header=0)
 std_data["time"] = pd.to_datetime(std_data["time"])
 # load data---------------------------------------------------------
