@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 
 # const---------------------------------------------------------
-predict_hours = 1
+predict_hours = 2
 input_params = ["measured", "msm", "kishocho"]
 # const---------------------------------------------------------
 
