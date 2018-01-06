@@ -53,7 +53,7 @@ def custom_model_1(inputs):
     inputs = Input(shape=(inputs_size,), name="inputs")
     x = Dropout(0.2)(inputs)
     
-    x = Dense(inputs_size, activation='relu')(x)
+    x = Dense(100, activation='relu')(x)
     x = Dropout(0.5)(x)
     
     predictions = Dense(1)(x)
