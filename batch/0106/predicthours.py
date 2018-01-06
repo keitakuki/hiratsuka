@@ -101,7 +101,7 @@ test_inputs = test_data[input_cols]
 test_label = test_data[label_cols[0]]
 
 # 基準のmse
-measured_cols = searchColumn("measured", test_data.columns)[0]
+measured_cols = searchColumn("measured", test_data.columns)
 measured_data = test_data[measured_cols[0]]
 measured_loss = mean_squared_error(measured_data, test_label)
 
