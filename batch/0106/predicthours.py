@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 # const---------------------------------------------------------
 predict_hours = 1
-input_params = ["msm", "kishocho"]
+input_params = ["measured", "msm", "kishocho"]
 # const---------------------------------------------------------
 
 # utils---------------------------------------------------------
