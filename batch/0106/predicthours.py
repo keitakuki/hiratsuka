@@ -16,8 +16,8 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 
 # const---------------------------------------------------------
-predict_hours = 2
-input_params = ["measured", "msm", "kishocho"]
+predict_hours = 1
+input_params = ["msm", "kishocho"]
 # const---------------------------------------------------------
 
 # utils---------------------------------------------------------
@@ -108,7 +108,7 @@ measured_loss = mean_squared_error(measured_data, test_label)
 # 1
 model_name = "2hour"
 min_loss = 1e10
-for i in range(1,5):
+for i in range(1,2):
     model = custom_model_1(train_inputs)
     model, history = custom_fit(model, train_inputs, train_label, ((np.array(test_inputs)), (np.array(test_label))))
     loss = mean_squared_error(model.predict(np.array(test_inputs)), test_label)
